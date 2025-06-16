@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "insta-style-whats-new",
-    "slug": "insta-style-whats-new",
+    "name": "expo-blurred-header-transition",
+    "slug": "expo-blurred-header-transition",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",

@@ -11,7 +11,7 @@ export default function Index() {
   return (
     <View style={[styles.container, { paddingTop: top + 100 }]}>
       <Pressable
-        onPress={() => router.push("/exportCanvas")}
+        onPress={() => router.push("/settings")}
         style={[styles.button, { backgroundColor: theme.colors.primary }]}
       >
         <Text style={styles.textStyle}>Settings</Text>

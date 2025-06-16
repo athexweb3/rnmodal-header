@@ -15,7 +15,7 @@ export default function RootLayout() {
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen
-          name="exportCanvas"
+          name="settings"
           options={{
             presentation: "formSheet",
             sheetCornerRadius: 30,
