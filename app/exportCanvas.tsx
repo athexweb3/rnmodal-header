@@ -10,7 +10,6 @@ import {
 } from "@/constants/AppConstant";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
-import Color from "color";
 import { BlurView } from "expo-blur";
 import { StyleSheet, View } from "react-native";
 import Animated, {
@@ -31,21 +30,21 @@ export default function ExportCanvas() {
   });
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        {
+          backgroundColor: theme.colors.background,
+        },
+      ]}
+    >
       <BlurView
         intensity={100}
         tint={"prominent"}
-        style={[
-          styles.absoluteBlurBg,
-          {
-            backgroundColor: Color(theme.colors.background)
-              .alpha(0.8)
-              .toString(),
-          },
-        ]}
+        style={styles.absoluteBlurBg}
       />
       <BlurHeader />
-      <AnimatedHeaderTitle scrollY={scrollY} title="Export Canvas" />
+      <AnimatedHeaderTitle scrollY={scrollY} title="Manage Settings" />
       <Animated.ScrollView
         onScroll={handleScroll}
         scrollEventThrottle={16}

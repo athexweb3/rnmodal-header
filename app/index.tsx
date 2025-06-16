@@ -2,50 +2,42 @@ import { useTheme } from "@react-navigation/native";
 import { useRouter } from "expo-router";
 import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function Index() {
   const theme = useTheme();
   const router = useRouter();
+  const { top } = useSafeAreaInsets();
   return (
-    <View style={styles.container}>
-      <View style={styles.boxes}>
-        <View style={[styles.box, { backgroundColor: "red", left: -25 }]} />
-        <View
-          style={[styles.box, { backgroundColor: "green", left: 0, top: -25 }]}
-        />
-        <View style={[styles.box, { backgroundColor: "blue", left: 25 }]} />
-      </View>
+    <View style={[styles.container, { paddingTop: top + 100 }]}>
       <Pressable
         onPress={() => router.push("/exportCanvas")}
-        style={{
-          backgroundColor: theme.colors.card,
-          padding: 10,
-          borderRadius: 10,
-        }}
+        style={[styles.button, { backgroundColor: theme.colors.primary }]}
       >
-        <Text style={{ color: theme.colors.text }}>Export Canvas</Text>
+        <Text style={styles.textStyle}>Settings</Text>
       </Pressable>
     </View>
   );
 }
+``;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
-  },
-  boxes: {
-    flexDirection: "row",
-    position: "relative",
-    width: 100,
-    height: 100,
-    borderWidth: 1,
   },
   box: {
     width: 100,
     height: 100,
     borderRadius: 50,
     position: "absolute",
+  },
+  button: {
+    padding: 10,
+    borderRadius: 10,
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "500",
   },
 });

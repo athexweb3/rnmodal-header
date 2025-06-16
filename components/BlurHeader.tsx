@@ -31,9 +31,9 @@ export const BlurHeader = () => {
         style={[[StyleSheet.absoluteFill, { height: 2.5 * HEADER_HEIGHT }]]}
       >
         <BlurView
-          intensity={100}
+          intensity={50}
           tint={"prominent"}
-          style={[StyleSheet.absoluteFill]}
+          style={StyleSheet.absoluteFillObject}
         />
       </MaskedView>
       <Pressable
@@ -41,7 +41,7 @@ export const BlurHeader = () => {
         style={[
           styles.closeButton,
           {
-            borderColor: theme.colors.text,
+            borderColor: theme.colors.border,
           },
         ]}
       >
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   closeButton: {
-    borderWidth: StyleSheet.hairlineWidth,
+    borderWidth: 1,
     padding: 5,
     borderRadius: 50,
     top: -10,

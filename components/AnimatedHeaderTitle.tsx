@@ -3,12 +3,14 @@ import {
   SCREEN_HEIGHT,
 } from "@/constants/AppConstant";
 import { useTheme } from "@react-navigation/native";
-import { Text } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import Animated, {
   Extrapolation,
   interpolate,
   SharedValue,
   useAnimatedStyle,
+  useDerivedValue,
+  useSharedValue,
   withSpring,
 } from "react-native-reanimated";
 
@@ -19,53 +21,58 @@ export const AnimatedHeaderTitle = ({
   scrollY: SharedValue<number>;
   title: string;
 }) => {
+  const translateY = useSharedValue(0);
+  const scale = useSharedValue(1);
   const theme = useTheme();
-  const animatedStyle = useAnimatedStyle(() => {
-    const translateY = interpolate(
+
+  useDerivedValue(() => {
+    translateY.value = interpolate(
       scrollY.value,
       [-SCREEN_HEIGHT, 0, ANIMATED_HEADER_TOP_OFFSET],
       [SCREEN_HEIGHT, 0, -ANIMATED_HEADER_TOP_OFFSET * 0.9],
       Extrapolation.CLAMP
     );
-    const scale = interpolate(
-      scrollY.value,
-      [0, ANIMATED_HEADER_TOP_OFFSET],
-      [1, 0.7],
-      Extrapolation.CLAMP
+    scale.value = withSpring(
+      interpolate(
+        scrollY.value,
+        [0, ANIMATED_HEADER_TOP_OFFSET * 0.5, ANIMATED_HEADER_TOP_OFFSET],
+        [1, 0.8, 0.6],
+        Extrapolation.CLAMP
+      )
     );
+  });
+
+  const animatedStyle = useAnimatedStyle(() => {
     return {
       top: ANIMATED_HEADER_TOP_OFFSET,
       transform: [
         {
-          translateY: translateY,
+          translateY: translateY.value,
         },
         {
-          scale: withSpring(scale, {
-            mass: 1,
-            damping: 25,
-            stiffness: 180,
-          }),
+          scale: scale.value,
         },
       ],
     };
   });
   return (
-    <Animated.View
-      style={[
-        { position: "absolute", alignSelf: "center", zIndex: 2 },
-        animatedStyle,
-      ]}
-    >
-      <Text
-        style={{
-          color: theme.colors.text,
-          fontSize: 25,
-          fontWeight: "500",
-          textAlign: "center",
-        }}
-      >
+    <Animated.View style={[styles.container, animatedStyle]}>
+      <Text style={[styles.textStyle, { color: theme.colors.text }]}>
         {title}
       </Text>
     </Animated.View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    position: "absolute",
+    alignSelf: "center",
+    zIndex: 2,
+  },
+  textStyle: {
+    fontSize: 25,
+    fontWeight: "500",
+    textAlign: "center",
+  },
+});
