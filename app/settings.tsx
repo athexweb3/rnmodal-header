@@ -18,7 +18,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-export default function ExportCanvas() {
+export default function Settings() {
   const theme = useTheme();
   const scrollY = useSharedValue(0);
   const { bottom } = useSafeAreaInsets();
