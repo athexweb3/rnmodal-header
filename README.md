@@ -69,4 +69,4 @@ This package was originally forked from [expo-blurred-header-transition](https:/
 # License
 
 This project is licensed under the **MIT License**.  
-See the [LICENSE](./LICENSE) file for full text.
+See the [LICENSE](https://github.com/iymra-org/rnmodal-header?tab=License-1-ov-file) file for full text.
