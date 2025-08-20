@@ -29,6 +29,21 @@ export default function RootLayout() {
             },
           }}
         />
+         <Stack.Screen
+          name="test"
+          options={{
+            presentation: "formSheet",
+            sheetCornerRadius: 30,
+            sheetElevation: 10,
+            sheetGrabberVisible: false,
+            fullScreenGestureEnabled: true,
+            fullScreenGestureShadowEnabled: true,
+            headerShown: false,
+            contentStyle: {
+              backgroundColor: "transparent",
+            },
+          }}
+        />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>

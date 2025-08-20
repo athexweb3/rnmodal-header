@@ -1,50 +1,69 @@
-# Welcome to your Expo app 👋
+# Iymra UI Header Package
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Flexible, beautiful React Native header and UI components for Expo/React Native projects.
 
-## Get started
+## Features
 
-1. Install dependencies
+- Customizable dynamic (`Container`) Component 
+- TypeScript types for all components
+- Easy integration and theming
 
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## Installation
 
 ```bash
-npm run reset-project
+npm install rnmodal-header
+# or
+yarn add rnmodal-header
+# or 
+bun add rnmodal-header
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+```diff
+- "main": "dist/index.js",  // Used for npm consumers
++ "main": "expo-router/entry", // Used for local Expo development
 
-## Learn more
+## Usage Example
 
-To learn more about developing your project with Expo, look at the following resources:
+```tsx
+import { Container } from "rnmodal-header/components";
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+// Example usage in a screen:
+<Container
+      title="Settings" // Title of Header
+      icon="cog-outline" // Icon of Header
+      subtitle="Manage your preferences" // Subtitle of Header
+      onClose={() => console.log('Close settings')} // Function on Press close button n header
+    >
+        <View>Your Container Codes</View>
+    </Container>
+```
 
-## Join the community
+## Components & Props
 
-Join our community of developers creating universal apps.
+### Container
+```ts
+type ContainerProps = {
+  title: string;
+  icon: ComponentProps<typeof Ionicons>["name"];
+  subtitle: string;
+  children: React.ReactNode;
+  onClose: () => void;
+};
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Development & Contributing
+
+Clone the repo and run:
+
+```bash
+npm install  | bun install | yarn install
+npm start    | bun start   | bun start
+```
+
+## Credit
+
+This package was originally forked from [expo-blurred-header-transition](https://github.com/arunabhverma/expo-blurred-header-transition) from [Arunabh Verma](https://github.com/arunabhverma) and inspired by the Expo community.
+
+## License
+
+MIT

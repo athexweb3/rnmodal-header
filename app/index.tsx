@@ -16,6 +16,12 @@ export default function Index() {
       >
         <Text style={styles.textStyle}>Settings</Text>
       </Pressable>
+      <Pressable
+        onPress={() => router.push("/test")}
+        style={[styles.button, { backgroundColor: theme.colors.primary }]}
+      >
+        <Text style={styles.textStyle}>Test</Text>
+      </Pressable>
     </View>
   );
 }

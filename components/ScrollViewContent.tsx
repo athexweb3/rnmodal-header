@@ -1,19 +1,24 @@
 import { useTheme } from "@react-navigation/native";
-import React from "react";
+import * as React from "react"; 
 import { StyleSheet, Text, View } from "react-native";
-import { CARD_DATA } from "../constants/SettingData";
-import { OptionsCard } from "./OptionsCard";
 
-export const ScrollViewContent = () => {
+type ScrollViewContentProps = {
+  subtitle: string;
+  children: React.ReactNode;
+};
+
+export const ScrollViewContent: React.FC<ScrollViewContentProps> = ({
+  subtitle,
+  children,
+}) => {
   const theme = useTheme();
+
   return (
     <View style={styles.container}>
       <Text style={[styles.subtitle, { color: theme.colors.text }]}>
-        {"Customize your app experience and manage \nyour preferences"}
+        {subtitle}
       </Text>
-      {CARD_DATA.map((card) => (
-        <OptionsCard key={card.title} cardData={card} />
-      ))}
+      <View>{children}</View>
     </View>
   );
 };

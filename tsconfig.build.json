@@ -1,0 +1,20 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "dist",
+    "noEmit": false,
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "module": "ESNext",
+    "target": "ES6",
+    "jsx": "react"
+  },
+  "include": [
+    "components/**/*",
+    "constants/**/*"
+  ],
+  "exclude": ["dist"]
+}

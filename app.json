@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "expo-blurred-header-transition",
-    "slug": "expo-blurred-header-transition",
+    "name": "rnmodal-header",
+    "slug": "rnmodal-header",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",

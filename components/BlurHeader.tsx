@@ -1,15 +1,16 @@
-import { HEADER_HEIGHT } from "@/constants/AppConstant";
+import React from "react";
+import { HEADER_HEIGHT } from "../constants/AppConstant";
 import { Ionicons } from "@expo/vector-icons";
 import MaskedView from "@react-native-masked-view/masked-view";
 import { useTheme } from "@react-navigation/native";
 import { BlurView } from "expo-blur";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
-import React from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import { easeGradient } from "react-native-easing-gradient";
 
-export const BlurHeader = () => {
+
+export const BlurHeader = ({ onClose }: { onClose: () => void }) => {
   const theme = useTheme();
   const router = useRouter();
   const { colors, locations } = easeGradient({
@@ -18,26 +19,28 @@ export const BlurHeader = () => {
       0: { color: "black" },
     },
   });
+
   return (
     <View style={styles.header}>
       <MaskedView
         maskElement={
           <LinearGradient
-            locations={locations}
-            colors={colors}
+            locations={
+              (locations.length >= 2 ? locations : [0, 1]) as unknown as readonly [number, number, ...number[]]
+            }
+            colors={
+              (colors.length >= 2 ? colors : ["black", "transparent"]) as unknown as readonly [string, string, ...string[]]
+            }
             style={StyleSheet.absoluteFill}
           />
         }
         style={[[StyleSheet.absoluteFill, { height: 2.5 * HEADER_HEIGHT }]]}
       >
-        <BlurView
-          intensity={50}
-          tint={"prominent"}
-          style={StyleSheet.absoluteFillObject}
-        />
+        <BlurView intensity={50} tint={"prominent"} style={StyleSheet.absoluteFillObject} />
       </MaskedView>
+
       <Pressable
-        onPress={() => router.back()}
+        onPress={onClose}
         style={[
           styles.closeButton,
           {

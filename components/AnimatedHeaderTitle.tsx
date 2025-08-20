@@ -1,7 +1,8 @@
+import * as React from "react"; // ✅ added
 import {
   ANIMATED_HEADER_TOP_OFFSET,
   SCREEN_HEIGHT,
-} from "@/constants/AppConstant";
+} from "../constants/AppConstant";
 import { useTheme } from "@react-navigation/native";
 import { StyleSheet, Text } from "react-native";
 import Animated, {
@@ -14,12 +15,14 @@ import Animated, {
   withSpring,
 } from "react-native-reanimated";
 
-export const AnimatedHeaderTitle = ({
-  scrollY,
-  title,
-}: {
+type AnimatedHeaderTitleProps = {
   scrollY: SharedValue<number>;
   title: string;
+};
+
+export const AnimatedHeaderTitle: React.FC<AnimatedHeaderTitleProps> = ({
+  scrollY,
+  title,
 }) => {
   const translateY = useSharedValue(0);
   const scale = useSharedValue(1);
@@ -32,6 +35,7 @@ export const AnimatedHeaderTitle = ({
       [SCREEN_HEIGHT, 0, -ANIMATED_HEADER_TOP_OFFSET * 0.9],
       Extrapolation.CLAMP
     );
+
     scale.value = withSpring(
       interpolate(
         scrollY.value,
@@ -42,19 +46,14 @@ export const AnimatedHeaderTitle = ({
     );
   });
 
-  const animatedStyle = useAnimatedStyle(() => {
-    return {
-      top: ANIMATED_HEADER_TOP_OFFSET,
-      transform: [
-        {
-          translateY: translateY.value,
-        },
-        {
-          scale: scale.value,
-        },
-      ],
-    };
-  });
+  const animatedStyle = useAnimatedStyle(() => ({
+    top: ANIMATED_HEADER_TOP_OFFSET,
+    transform: [
+      { translateY: translateY.value },
+      { scale: scale.value },
+    ],
+  }));
+
   return (
     <Animated.View style={[styles.container, animatedStyle]}>
       <Text style={[styles.textStyle, { color: theme.colors.text }]}>
