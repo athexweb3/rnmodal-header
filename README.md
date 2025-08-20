@@ -21,7 +21,7 @@ bun add rnmodal-header
 ```diff
 - "main": "dist/index.js",  // Used for npm consumers
 + "main": "expo-router/entry", // Used for local Expo development
-
+```
 ## Usage Example
 
 ```tsx
