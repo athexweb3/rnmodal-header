@@ -74,5 +74,8 @@
   
   "license": "MIT",
   "private": false,
+  "publishConfig": {
+  "registry": "https://npm.pkg.github.com"
+},
   "packageManager": "bun@1.2.20"
 }
