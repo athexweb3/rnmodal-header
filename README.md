@@ -66,6 +66,7 @@ npm start    | bun start   | bun start
 
 This package was originally forked from [expo-blurred-header-transition](https://github.com/arunabhverma/expo-blurred-header-transition) from [Arunabh Verma](https://github.com/arunabhverma) and inspired by the Expo community.
 
-## License
+# License
 
-MIT
+This project is licensed under the **MIT License**.  
+See the [LICENSE](./LICENSE) file for full text.
