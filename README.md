@@ -18,6 +18,8 @@ yarn add rnmodal-header
 bun add rnmodal-header
 ```
 
+# Change in package.json
+
 ```diff
 - "main": "dist/index.js",  // Used for npm consumers
 + "main": "expo-router/entry", // Used for local Expo development
