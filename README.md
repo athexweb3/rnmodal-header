@@ -18,7 +18,7 @@ yarn add rnmodal-header
 bun add rnmodal-header
 ```
 
-# Change in package.json
+## Change in package.json
 
 ```diff
 - "main": "dist/index.js",  // Used for npm consumers
