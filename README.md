@@ -36,7 +36,7 @@ bun add rnmodal-header
 ## Usage Example
 
 ```tsx
-import { Container } from "rnmodal-header/components";
+import { Container } from "rnmodal-header";
 import { View } from "react-native";
 
 export default function SettingsScreen() {
