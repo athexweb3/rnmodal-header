@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import Container from '../components/Container'
+import { StyleSheet, View } from 'react-native'
+import Container from '../src/components/Container'
 
 export default function settings() {
   return (
@@ -9,8 +9,9 @@ export default function settings() {
       icon="cog-outline"
       subtitle="Manage your preferences"
       onClose={() => console.log('Close settings')}
+      onBack={() => console.log('Go back')}
     >
-        <View></View>
+      <View></View>
     </Container>
   )
 }

@@ -4,7 +4,6 @@ import {
   ThemeProvider,
 } from "@react-navigation/native";
 import { Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 import { useColorScheme } from "react-native";
 import "react-native-reanimated";
 
@@ -45,7 +44,6 @@ export default function RootLayout() {
           }}
         />
       </Stack>
-      <StatusBar style="auto" />
     </ThemeProvider>
   );
 }

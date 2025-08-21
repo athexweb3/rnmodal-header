@@ -1,9 +1,5 @@
-import * as React from "react"; // ✅ added
-import {
-  ANIMATED_HEADER_TOP_OFFSET,
-  SCREEN_HEIGHT,
-} from "../constants/AppConstant";
 import { useTheme } from "@react-navigation/native";
+import * as React from "react"; // ✅ added
 import { StyleSheet, Text } from "react-native";
 import Animated, {
   Extrapolation,
@@ -14,6 +10,10 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from "react-native-reanimated";
+import {
+  ANIMATED_HEADER_TOP_OFFSET,
+  SCREEN_HEIGHT,
+} from "../constants/AppConstant";
 
 type AnimatedHeaderTitleProps = {
   scrollY: SharedValue<number>;

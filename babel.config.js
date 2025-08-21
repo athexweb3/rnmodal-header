@@ -1,18 +1,12 @@
-module.exports = {
-  presets: [
-    "@babel/preset-env",
-    "@babel/preset-react",
-    "@babel/preset-typescript"
-  ],
-  plugins: [
-    [
-      "module-resolver",
-      {
-        root: ["./"],
-        alias: {
-          "@": "./components", 
-        },
-      },
+// babel.config.js
+module.exports = function (api) {
+  api.cache(true);
+  return {
+    presets: [
+      "babel-preset-expo"
     ],
-  ],
+    plugins: [
+      // put other plugins here (keep this empty of expo-router/babel)
+    ],
+  };
 };

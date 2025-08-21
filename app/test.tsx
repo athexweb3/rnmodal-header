@@ -1,5 +1,5 @@
+import { Container } from "@/src"
 import { StyleSheet, View } from 'react-native'
-import { Container } from "rnmodal-header"
 export default function test() {
     return (
         <Container
@@ -7,8 +7,20 @@ export default function test() {
             icon="cog-outline"
             subtitle="Manage your preferences"
             onClose={() => console.log('Close settings')}
+            customIcon={{
+                source: require('../assets/images/react-logo.png'),
+                tintColor: '#ff0000',
+            }}
+            actions={[{
+                icon: "save-outline",
+                onPress: () => console.log('Save settings'),
+            },
+            {
+                icon: "trash",
+                onPress: () => console.log('Delete settings'),
+            }]}
         >
-            <View></View>
+            <View className="h-[1000px]"></View>
         </Container>
     )
 }

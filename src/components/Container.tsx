@@ -3,7 +3,7 @@ import { useTheme } from "@react-navigation/native";
 import { BlurView } from "expo-blur";
 import * as React from "react"; // ✅ must import React in TSX files
 import { ComponentProps } from "react";
-import { StyleSheet, View } from "react-native";
+import { Image, StyleProp, StyleSheet, TextStyle, View } from "react-native";
 import Animated, { useAnimatedScrollHandler, useSharedValue } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
@@ -22,11 +22,26 @@ type ContainerProps = {
   icon: ComponentProps<typeof Ionicons>["name"];
   subtitle: string;
   children: React.ReactNode;
+  tintColor?: any;
   onClose: () => void;
   bgColor?: string;
+  customIcon?: {
+    source?: any;
+    tintColor?: string;
+  }
+   actions?: {
+    [key: string]: {
+      icon: ComponentProps<typeof Ionicons>["name"];
+      onPress: () => void;
+      shown?: boolean;
+    };
+  };
 };
 
-export default function Container({ title, icon, subtitle, children, onClose, bgColor }: ContainerProps) {
+
+
+export default function Container(
+  { title, icon, subtitle, children, onClose, bgColor, customIcon, tintColor, actions}: ContainerProps) {
   const theme = useTheme();
   const scrollY = useSharedValue(0);
   const { bottom } = useSafeAreaInsets();
@@ -37,6 +52,17 @@ export default function Container({ title, icon, subtitle, children, onClose, bg
     },
   });
 
+
+  function correctHex(hex: string) {
+    if (hex.startsWith("#")) {
+      hex = hex.slice(1);
+    }
+    if (hex.length === 3) {
+      hex = hex.split("").map((char) => char + char).join("");
+    }
+    return `#${hex}`;
+  }
+
   return (
 
     <View
@@ -46,7 +72,7 @@ export default function Container({ title, icon, subtitle, children, onClose, bg
       ]}
     >
       <BlurView intensity={100} tint={"prominent"} style={styles.absoluteBlurBg} />
-      <BlurHeader onClose={onClose} />
+      <BlurHeader actions={actions} onClose={onClose} />
       <AnimatedHeaderTitle scrollY={scrollY} title={title} />
       <Animated.ScrollView
         onScroll={handleScroll}
@@ -55,7 +81,19 @@ export default function Container({ title, icon, subtitle, children, onClose, bg
         scrollIndicatorInsets={{ top: HEADER_HEIGHT, bottom: bottom + 10 }}
         contentContainerStyle={[styles.scrollViewContent, { paddingBottom: bottom + 50 }]}
       >
-        <Ionicons name={icon} size={1.2 * ICON_HEIGHT} color={theme.colors.text} style={styles.icon} />
+        {
+          customIcon &&
+          <Image
+            source={customIcon.source}
+            tintColor={customIcon.tintColor ? correctHex(customIcon.tintColor) : theme.colors.text}
+            style={[styles.icon, { height: 1.2 * ICON_HEIGHT, width: 1.2 * ICON_HEIGHT }]}
+
+          />
+        }
+        {
+          !customIcon &&
+          <Ionicons name={icon} size={1.2 * ICON_HEIGHT} color={tintColor ? correctHex(tintColor) : theme.colors.text} style={styles.icon} />
+        }
         <View style={styles.headerTitleSpace} />
         <ScrollViewContent subtitle={subtitle} children={children} />
       </Animated.ScrollView>
