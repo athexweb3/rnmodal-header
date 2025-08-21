@@ -23,9 +23,10 @@ type ContainerProps = {
   subtitle: string;
   children: React.ReactNode;
   onClose: () => void;
+  bgColor?: string;
 };
 
-export default function Container({ title, icon, subtitle, children, onClose }: ContainerProps) {
+export default function Container({ title, icon, subtitle, children, onClose, bgColor }: ContainerProps) {
   const theme = useTheme();
   const scrollY = useSharedValue(0);
   const { bottom } = useSafeAreaInsets();
@@ -37,7 +38,7 @@ export default function Container({ title, icon, subtitle, children, onClose }: 
   });
 
   return (
-    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
+    <View style={[styles.container, { backgroundColor: theme.colors.background || bgColor }]}>
       <BlurView intensity={100} tint={"prominent"} style={styles.absoluteBlurBg} />
       <BlurHeader onClose={onClose} />
       <AnimatedHeaderTitle scrollY={scrollY} title={title} />
