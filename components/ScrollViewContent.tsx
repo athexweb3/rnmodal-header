@@ -25,7 +25,6 @@ export const ScrollViewContent: React.FC<ScrollViewContentProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 16,
     gap: 25,
   },
   subtitle: {

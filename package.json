@@ -1,7 +1,8 @@
 {
   "name": "rnmodal-header",
-  "version": "1.1.0",
-  "main": "components/index.ts",
+  "version": "1.1.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "start": "expo start",
     "reset-project": "node ./scripts/reset-project.js",
@@ -9,12 +10,20 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "expo lint",
-    "build": "bunx babel components constants --out-dir dist dist/constants --extensions \".ts,.tsx\""
+    "build": "bunx babel components constants --out-dir dist --extensions \".ts,.tsx\""
   },
   "files": [
+    "dist",
     "components/**/*",
-    "constants"
+    "constants/**/*"
   ],
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18",
+    "react-native": ">=0.76",
+    "expo": ">=52",
+    "expo-router": ">=4"
+  },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
     "@react-native-masked-view/masked-view": "0.3.2",
@@ -22,31 +31,7 @@
     "@react-navigation/elements": "^2.3.8",
     "@react-navigation/native": "^7.1.6",
     "color": "^5.0.0",
-    "expo": "^52.0.6",
-    "expo-blur": "~14.0.3",
-    "expo-constants": "~17.0.8",
-    "expo-font": "~13.0.4",
-    "expo-haptics": "~14.0.1",
-    "expo-image": "~2.0.7",
-    "expo-linear-gradient": "~14.0.2",
-    "expo-linking": "~7.0.5",
-    "expo-router": "~4.0.21",
-    "expo-splash-screen": "~0.29.24",
-    "expo-status-bar": "~2.0.1",
-    "expo-symbols": "~0.2.2",
-    "expo-system-ui": "~4.0.9",
-    "expo-web-browser": "~14.0.2",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "react-native": "0.76.9",
-    "react-native-easing-gradient": "^1.1.1",
-    "react-native-gesture-handler": "~2.20.2",
-    "react-native-reanimated": "~3.16.1",
-    "react-native-safe-area-context": "4.12.0",
-    "react-native-screens": "~4.4.0",
-    "react-native-web": "~0.19.13",
-    "react-native-webview": "13.12.5",
-    "rnmodal-header": "1.0.7"
+    "react-native-easing-gradient": "^1.1.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.28.3",
@@ -71,11 +56,7 @@
     "type": "git",
     "url": "https://github.com/iymra-org/rnmodal-header"
   },
-  
   "license": "MIT",
   "private": false,
-  "publishConfig": {
-  "registry": "https://npm.pkg.github.com"
-},
   "packageManager": "bun@1.2.20"
 }
