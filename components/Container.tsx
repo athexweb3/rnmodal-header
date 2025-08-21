@@ -1,13 +1,3 @@
-import { AnimatedHeaderTitle } from "./AnimatedHeaderTitle";
-import { BlurHeader } from "./BlurHeader";
-import { ScrollViewContent } from "./ScrollViewContent";
-import {
-  DUMMY_ITEM_HEIGHT,
-  HEADER_HEIGHT,
-  ICON_HEIGHT,
-  SCREEN_HEIGHT,
-  TOP_PADDING,
-} from "../constants/AppConstant";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 import { BlurView } from "expo-blur";
@@ -16,6 +6,16 @@ import { ComponentProps } from "react";
 import { StyleSheet, View } from "react-native";
 import Animated, { useAnimatedScrollHandler, useSharedValue } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import {
+  DUMMY_ITEM_HEIGHT,
+  HEADER_HEIGHT,
+  ICON_HEIGHT,
+  SCREEN_HEIGHT,
+  TOP_PADDING,
+} from "../constants/AppConstant";
+import { AnimatedHeaderTitle } from "./AnimatedHeaderTitle";
+import { BlurHeader } from "./BlurHeader";
+import { ScrollViewContent } from "./ScrollViewContent";
 
 type ContainerProps = {
   title: string;
@@ -38,7 +38,13 @@ export default function Container({ title, icon, subtitle, children, onClose, bg
   });
 
   return (
-    <View style={[styles.container, { backgroundColor: theme.colors.background || bgColor }]}>
+
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: bgColor ?? theme.colors.background },
+      ]}
+    >
       <BlurView intensity={100} tint={"prominent"} style={styles.absoluteBlurBg} />
       <BlurHeader onClose={onClose} />
       <AnimatedHeaderTitle scrollY={scrollY} title={title} />
