@@ -1,47 +1,47 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 import { BlurView } from "expo-blur";
-import * as React from "react"; // ✅ must import React in TSX files
-import { ComponentProps } from "react";
-import { Image, StyleProp, StyleSheet, TextStyle, View } from "react-native";
+import * as React from "react";
+import { Image, StyleSheet, View } from "react-native";
 import Animated, { useAnimatedScrollHandler, useSharedValue } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { AnimatedHeaderTitle } from "./components/AnimatedHeaderTitle";
+import { BlurHeader } from "./components/BlurHeader";
+import { ScrollViewContent } from "./components/ScrollViewContent";
 import {
   DUMMY_ITEM_HEIGHT,
   HEADER_HEIGHT,
   ICON_HEIGHT,
   SCREEN_HEIGHT,
   TOP_PADDING,
-} from "../constants/AppConstant";
-import { AnimatedHeaderTitle } from "./AnimatedHeaderTitle";
-import { BlurHeader } from "./BlurHeader";
-import { ScrollViewContent } from "./ScrollViewContent";
+} from "./constants/AppConstant";
 
-type ContainerProps = {
+
+interface ContainerProps {
   title: string;
-  icon: ComponentProps<typeof Ionicons>["name"];
+  icon: string;
   subtitle: string;
   children: React.ReactNode;
-  tintColor?: any;
+  tintColor?: string;
   onClose: () => void;
   bgColor?: string;
   customIcon?: {
     source?: any;
     tintColor?: string;
-  }
-   actions?: {
+  };
+  actions?: {
     [key: string]: {
-      icon: ComponentProps<typeof Ionicons>["name"];
+      icon: string;
       onPress: () => void;
       shown?: boolean;
     };
   };
-};
+}
 
 
 
 export default function Container(
-  { title, icon, subtitle, children, onClose, bgColor, customIcon, tintColor, actions}: ContainerProps) {
+  { title, icon, subtitle, children, onClose, bgColor, customIcon, tintColor, actions }: ContainerProps) {
   const theme = useTheme();
   const scrollY = useSharedValue(0);
   const { bottom } = useSafeAreaInsets();
@@ -72,7 +72,7 @@ export default function Container(
       ]}
     >
       <BlurView intensity={100} tint={"prominent"} style={styles.absoluteBlurBg} />
-      <BlurHeader actions={actions} onClose={onClose} />
+      <BlurHeader actions={actions as any} onClose={onClose} />
       <AnimatedHeaderTitle scrollY={scrollY} title={title} />
       <Animated.ScrollView
         onScroll={handleScroll}
@@ -92,14 +92,14 @@ export default function Container(
         }
         {
           !customIcon &&
-          <Ionicons name={icon} size={1.2 * ICON_HEIGHT} color={tintColor ? correctHex(tintColor) : theme.colors.text} style={styles.icon} />
+          <Ionicons name={icon as any} size={1.2 * ICON_HEIGHT} color={tintColor ? correctHex(tintColor) : theme.colors.text} style={styles.icon} />
         }
         <View style={styles.headerTitleSpace} />
         <ScrollViewContent subtitle={subtitle} children={children} />
       </Animated.ScrollView>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

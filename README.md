@@ -24,15 +24,6 @@ yarn add rnmodal-header
 bun add rnmodal-header
 ````
 
-### Update `package.json` for local Expo development
-
-```diff
-- "main": "src/index",  // Used for npm consumers
-+ "main": "expo-router/entry", // Used for local Expo development
-```
-
-
-
 ## Usage Example
 
 ```tsx

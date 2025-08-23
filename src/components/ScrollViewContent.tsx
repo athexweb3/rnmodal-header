@@ -13,6 +13,8 @@ export const ScrollViewContent: React.FC<ScrollViewContentProps> = ({
 }) => {
   const theme = useTheme();
 
+  
+  
   return (
     <View style={styles.container}>
       <Text style={[styles.subtitle, { color: theme.colors.text }]}>

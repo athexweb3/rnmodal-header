@@ -32,8 +32,8 @@ export const BlurHeader = ({ onClose, actions }: BlurHeaderProps) => {
   // Include all actions that are `shown !== false` (default true)
   const filteredActions = actions
     ? Object.entries(actions)
-        .filter(([_, value]) => value.shown !== false)
-        .map(([key, { icon, onPress }]) => ({ key, icon, onPress }))
+      .filter(([_, value]) => value.shown !== false)
+      .map(([key, { icon, onPress }]) => ({ key, icon, onPress }))
     : [];
 
   // Add close button at the end
@@ -44,8 +44,8 @@ export const BlurHeader = ({ onClose, actions }: BlurHeaderProps) => {
       <MaskedView
         maskElement={
           <LinearGradient
-            locations={(locations.length >= 2 ? locations : [0, 1]) as readonly [number, number, ...number[]]}
-            colors={(colors.length >= 2 ? colors : ["black", "transparent"]) as readonly [string, string, ...string[]]}
+            locations={(locations.length >= 2 ? locations : [0, 1]) as unknown as readonly [number, number, ...number[]]}
+            colors={(colors.length >= 2 ? colors : ["black", "transparent"]) as unknown as readonly [string, string, ...string[]]}
             style={StyleSheet.absoluteFill}
           />
         }
@@ -73,7 +73,7 @@ export const BlurHeader = ({ onClose, actions }: BlurHeaderProps) => {
               },
             ]}
           >
-            <Ionicons name={btn.icon} size={18} color={theme.colors.text} />
+            <Ionicons name={btn.icon as any} size={18} color={theme.colors.text} />
           </Pressable>
         );
       })}
